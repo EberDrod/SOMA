@@ -1,0 +1,13 @@
+contract AidFund:
+
+    var recipient: address
+    var goal: uint
+    var deadline: timestamp
+
+    def init(_recipient: address, _goal: uint, _duration: uint):
+        self.recipient = _recipient
+        self.goal = _goal
+        self.deadline = block.timestamp + _duration
+
+    def donate():
+        self.balances[msg.sender] += msg.value

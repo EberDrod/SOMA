@@ -1,0 +1,36 @@
+contract AidFund:
+
+    var recipient: address
+    var goal: uint
+    var deadline: timestamp
+    var raised: uint
+    var donors: map[address, uint]
+    var claimed: bool
+
+    def init(_recipient: address, _goal: uint, _duration: uint):
+        self.recipient = _recipient
+        self.goal = _goal
+        self.deadline = block.timestamp + _duration
+        self.raised = 0
+        self.claimed = false
+
+    def donate():
+        assert block.timestamp < self.deadline
+        self.donors[msg.sender] += msg.value
+        self.raised += msg.value
+
+    def claim():
+        assert msg.sender == self.recipient
+        assert block.timestamp >= self.deadline
+        assert self.raised >= self.goal
+        assert not self.claimed
+        transfer(self.recipient, self.raised)
+        self.claimed = true
+
+    def refund():
+        assert block.timestamp >= self.deadline
+        assert self.raised < self.goal
+        amount = self.donors[msg.sender]
+        assert amount > 0
+        self.donors[msg.sender] = 0
+        transfer(msg.sender, amount)

@@ -1,0 +1,20 @@
+{
+  "name": "soma-cli",
+  "version": "1.0.0",
+  "description": "CLI para el lenguaje de contratos inteligentes SOMA",
+  "main": "bin/somac.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"No hay pruebas todavía\""
+  },
+  "author": "Eber Peña",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "commander": "^11.0.0",
+    "fs-extra": "^11.2.0"
+  },
+  "bin": {
+    "somac": "./bin/somac.js"
+  }
+}
